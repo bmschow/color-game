@@ -6,15 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-    <div class="jumbotron">
+    <div class="jumbotron" id="jumbo">
         <div class="text-center">
             <h2 class="display-5">The Great</h2>
             <h1 class="display-4">RGB(60, 132, 203)</h1>
             <h2>Guessing Game</h2>
+        </div>
+    </div>
+    <div class="container-fluid bar">
+        <div class="row">
+            <div class="col-5 text-right">
+                <button class="options">New Colors</button>
+            </div>
+            <div class="col-2 text-center">
+                
+            </div>
+            <div class="col-5 text-left">
+                <button class="options">New Colors</button>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="gameboard">
+        <div class="row">
+            <div class="col-4 box-container">
+                <div class="box"></div> 
+            </div>
+            <div class="col-4 box-container">
+                <div class="box"></div> 
+            </div>
+            <div class="col-4 box-container">
+                <div class="box"></div> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 box-container">
+                <div class="box"></div> 
+            </div>
+            <div class="col-4 box-container">
+                <div class="box"></div> 
+            </div>
+            <div class="col-4 box-container">
+                <div class="box"></div> 
+            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
