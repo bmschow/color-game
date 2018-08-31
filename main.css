@@ -1,10 +1,32 @@
-body {
-    font-family: 'Roboto';
-    background-color: black;
+.bar {
+    background-color: blue;
 }
 
-.jumbotron {
+#background {
+    font-family: 'Roboto';
+    background-color: black;
     text-transform: uppercase;
+}
+
+.box {
+    height: 100px;
+    width: 100px;
+    border-radius: 15px;
+    background-color:blue;
+    border: 15px solid transparent;
+    padding: 15px;
+}
+
+.box-container {
+    background-color: red;    
+    height: 150px;
+}
+
+#game {
+    width: 410px;
+    margin: auto;
+    border-spacing: 15px;
+    border-collapse: separate;
 }
 
 #jumbo {
@@ -12,31 +34,8 @@ body {
     margin: 0px;
 }
 
-.bar {
-    background-color: blue;
-}
-
 .options {
     background-color: white;
     border: none;
     font-weight: 700;
-}
-
-#box1 {
-    background-color:blue;
-}
-
-.box {
-    height: 150px;
-    width: 150px;
-    border-radius: 10px;
-    background-color:blue;
-}
-
-#gameboard {
-    padding-top: 10px;
-}
-
-.row {
-    margin-top: 15px;
 }
