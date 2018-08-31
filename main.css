@@ -1,5 +1,5 @@
 .bar {
-    background-color: blue;
+    background-color: white;
 }
 
 #background {
@@ -12,8 +12,7 @@
     height: 100px;
     width: 100px;
     border-radius: 15px;
-    background-color:blue;
-    border: 15px solid transparent;
+    background-color:black;
     padding: 15px;
 }
 
@@ -32,9 +31,11 @@
 #jumbo {
     padding: 1rem 2rem;
     margin: 0px;
+    background-color: rgb(66, 134, 244);
 }
 
 .options {
+    color: rgb(66, 134, 244);
     background-color: white;
     border: none;
     font-weight: 700;
