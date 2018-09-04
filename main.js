@@ -1,5 +1,6 @@
 var gameLevel = "hard";
 var winner;
+var winColorList;
 var box1;
 var box2;
 var box3;
@@ -14,15 +15,26 @@ function Box(id) {
     this.setWinner = function(isWinner) {
         if(isWinner) {
             this.obj.addEventListener('click', win);
+            winColorList = this.colorList;
+            this.event = win;
         } else {
             this.obj.addEventListener('click', fade);
+            this.event = fade;
         }
     }
-    this.winner = false;
-}
 
-function win() {
-    alert("Winning");
+    this.removeEventListeners = function() {
+        this.obj.removeEventListener('click', this.event);
+    }
+
+    this.setBackgroundColor= function(colorList) {
+        this.obj.style.backgroundColor = getColorString(colorList); 
+    }
+    
+    this.setOpacity = function(opacity) {
+        this.obj.style.opacity = 1;
+    }
+    this.winner = false;
 }
 
 function fade(element) {
@@ -35,10 +47,48 @@ function fade(element) {
         element.target.style.filter = 'alpha(opacity=' + op * 100 + ")";
         op -= op * 0.1;
     }, 50);
+
+   document.getElementById("prompt").textContent = "Try again";
 }
 
 function setUp() {
+    console.log(gameLevel);
+    setupLevelButtons();
+    boxes = setupBoxes();
+    winner = selectWinner(boxes);
 
+    for (var i = 0; i < boxes.length; i++) {
+        boxes[i].setOpacity(1);
+    }
+    document.getElementById("goalColor").textContent = getColorString(winner.colorList);
+    var newColorsButton = document.getElementById("newColors");
+
+    newColorsButton.addEventListener('click', setUp);
+    document.getElementById("prompt").textContent = "";
+}
+
+function setupLevelButtons() {
+    document.getElementById("easy").addEventListener('click', function() {
+        if(gameLevel === "hard") {
+            document.getElementById("hard").classList.remove("selected");
+            document.getElementById("easy").classList.add("selected");
+            gameLevel = "easy";
+            setUp()
+        }
+    })
+
+    document.getElementById("hard").addEventListener('click', function() {
+        if(gameLevel === "easy") {
+            document.getElementById("easy").classList.remove("selected");
+            document.getElementById("hard").classList.add("selected");
+            gameLevel = "hard";
+            setUp()
+        }
+    })
+}
+
+function setupBoxes() {
+    removeBoxes([box1, box2, box3, box4, box5, box6]);
     box1 = new Box("box1");
     box2 = new Box("box2");
     box3 = new Box("box3");
@@ -46,12 +96,23 @@ function setUp() {
         box4 = new Box("box4");
         box5 = new Box("box5");
         box6 = new Box("box6");
-        winner = selectWinner([box1, box2, box3, box4, box5, box6]);
+        boxes = [box1, box2, box3, box4, box5, box6];
     } else {
-        winner = selectWinner([box1, box2, box3]);
+        boxes = [box1, box2, box3];
     }
-    document.getElementById("goalColor").textContent = getColorString(winner.colorList);
-    
+    return boxes;
+}
+
+function removeBoxes(boxes) {
+    for(var i = 0; i < boxes.length; i++ ) {
+        if(boxes[i]) {
+            boxes[i].setOpacity(0.1);
+            boxes[i].setBackgroundColor([0, 0, 0]);
+            boxes[i].removeEventListeners();
+
+            boxes[i] = null;
+        }
+    }
 }
 
 function selectWinner(boxes) {
@@ -65,6 +126,24 @@ function selectWinner(boxes) {
         }
     }
     return boxes[winnerInd]; 
+}
+
+function win() {
+    var jumbo = document.getElementById("jumbo");
+    jumbo.style.backgroundColor = getColorString(winColorList);
+    document.getElementById("prompt").textContent = "Winning";
+    
+    if(gameLevel === "hard") {
+        boxes = [box1, box2, box3, box4, box5, box6];
+    } else {
+        boxes = [box1, box2, box3];
+    }
+
+    for (var i = 0; i < boxes.length; i++) {
+        boxes[i].setBackgroundColor(winColorList);
+        boxes[i].setOpacity(1);
+        boxes[i].removeEventListeners();
+    }
 }
 
 function setHeadingColors(colorList) {
